@@ -1,0 +1,82 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+}
+
+:root {
+  color-scheme: light;
+  --background: #ffffff;
+  --foreground: #243447;
+  --card: #ffffff;
+  --card-foreground: #243447;
+  --primary: #0878D1;
+  --primary-foreground: #ffffff;
+  --muted: #F2F8FC;
+  --muted-foreground: #64748B;
+  --border: #E1ECF3;
+  --input: #DCEAF4;
+  --ring: #0878D1;
+  --radius: 0.75rem;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--background); color: var(--foreground); }
+a { transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+
+@keyframes how-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(28px, 16px, 0) scale(1.08); }
+}
+@keyframes how-ping {
+  75%, 100% { transform: scale(2.4); opacity: 0; }
+}
+@keyframes how-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(98, 217, 229, 0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(98, 217, 229, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(98, 217, 229, 0); }
+}
+.how-orb { animation: how-drift 10s ease-in-out infinite; }
+.how-orb-delay { animation-delay: -5s; }
+.how-ping { animation: how-ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite; }
+.how-pulse { animation: how-pulse 1.8s ease-out infinite; }
+
+@keyframes section-in {
+  to { opacity: 1; transform: none; }
+}
+.section-reveal { opacity: 0; transform: translateY(28px); }
+.section-in { animation: section-in 0.75s ease forwards; }
+
+@keyframes motion-in {
+  from { opacity: 0; translate: 0 18px; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes float-y {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -10px; }
+}
+.section-in .motion-card { animation: motion-in 0.7s ease backwards; }
+.section-in .motion-card:nth-child(2) { animation-delay: 80ms; }
+.section-in .motion-card:nth-child(3) { animation-delay: 160ms; }
+.section-in .motion-card:nth-child(4) { animation-delay: 240ms; }
+.section-in .motion-card:nth-child(5) { animation-delay: 320ms; }
+.section-in .motion-card:nth-child(6) { animation-delay: 400ms; }
+.float-slow { animation: float-y 5.5s ease-in-out infinite; }
+.float-slow-delay { animation-delay: -2.6s; }
